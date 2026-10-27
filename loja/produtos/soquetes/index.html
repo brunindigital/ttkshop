@@ -1,0 +1,334 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#EE4D2D">
+  <meta name="color-scheme" content="light">
+  <title>Shopee Oficial</title>
+  <link rel="stylesheet" href="css/app.css">
+  <script>if(window.self===window.top){var c=document.createElement("script");c.async=true;c.src="https://www.clarity.ms/tag/vo3nvc6ncq";document.head.appendChild(c);}</script><script async="" src="https://www.clarity.ms/tag/vo3nvc6ncq"></script>
+  <script>window.pixelId="6a91d0f7cf1502036736e55c";(function(){var s=document.createElement("script");s.async=true;s.defer=true;s.src="https://cdn.utmify.com.br/scripts/pixel/pixel.js";document.head.appendChild(s);})();</script><script async="" defer="" src="../../js/pixel.js"></script>
+  <script src="../../js/clean-legacy-utm.js"></script>
+  <script src="../../js/latest.js" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
+  <style>
+    body { padding-bottom: calc(64px + env(safe-area-inset-bottom)); }
+    .gallery { position: relative; background: var(--surface); }
+    .track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+    .track::-webkit-scrollbar { display: none; }
+    .track img { flex: 0 0 100%; width: 100%; aspect-ratio: 1; object-fit: contain; scroll-snap-align: center; background: var(--surface); }
+    .counter {
+      position: absolute; right: 12px; bottom: 12px; background: rgba(0,0,0,.45); color: var(--surface);
+      font-size: 12px; padding: 2px 10px; border-radius: 999px;
+    }
+    .thumbs { display: flex; gap: 6px; overflow-x: auto; padding: 8px 12px; background: var(--surface); scrollbar-width: none; }
+    .thumbs button { flex: 0 0 52px; height: 52px; border: 1.5px solid var(--line); border-radius: 4px; overflow: hidden; background: var(--surface); }
+    .thumbs button[aria-current="true"] { border-color: var(--brand); }
+    .thumbs img { width: 100%; height: 100%; object-fit: cover; }
+
+    .flash {
+      background: var(--brand); color: var(--surface); padding: 10px 16px;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    }
+    .flash .now { font-size: 26px; font-weight: 700; line-height: 1.1; }
+    .flash .now small { font-size: 15px; margin-right: 2px; }
+    .flash .was { font-size: 13px; opacity: .85; display: flex; gap: 6px; align-items: center; }
+    .flash .was s { opacity: .9; }
+    .flash .pill { background: var(--surface); color: var(--brand); font-size: 11px; font-weight: 700; padding: 1px 6px; border-radius: 3px; }
+    .flash .ends { text-align: right; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .02em; }
+    .flash .clock { display: flex; gap: 3px; justify-content: flex-end; margin-top: 4px; }
+    .flash .clock span { background: var(--ink); color: var(--surface); font-size: 12px; font-weight: 700; padding: 2px 4px; border-radius: 3px; min-width: 24px; text-align: center; }
+
+    .title { font-size: 16px; font-weight: 500; line-height: 1.4; }
+    .mall { display: inline-block; background: var(--brand); color: var(--surface); font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 2px; margin-right: 6px; vertical-align: 2px; }
+    .stats { display: flex; align-items: center; gap: 10px; margin-top: 8px; font-size: 13px; color: var(--muted); }
+    .stats b { color: var(--ink); font-weight: 600; }
+    .stats .sep { width: 1px; height: 12px; background: var(--line); }
+    .stars { color: #F5A623; display: inline-flex; gap: 1px; }
+
+    .row { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); font-size: 14px; }
+    .row:first-child { border-top: 0; padding-top: 0; }
+    .row .k { width: 76px; flex-shrink: 0; color: var(--muted); font-size: 13px; }
+    .row .v { flex: 1; }
+    .row .ok { color: var(--ok); font-weight: 600; }
+    .coupon { display: inline-flex; align-items: center; gap: 6px; border: 1px dashed var(--brand); color: var(--brand); background: var(--brand-tint); font-size: 12px; font-weight: 600; padding: 3px 8px; border-radius: 3px; }
+
+    .shop { display: flex; align-items: center; gap: 12px; }
+    .shop img { width: 48px; height: 48px; border-radius: 999px; border: 1px solid var(--line); object-fit: contain; background: var(--surface); padding: 6px; }
+    .shop .n { font-weight: 600; font-size: 15px; }
+    .shop .s { font-size: 12px; color: var(--muted); }
+    .shop a { margin-left: auto; height: 32px; padding: 0 12px; font-size: 13px; border: 1px solid var(--brand); color: var(--brand); border-radius: 4px; display: inline-flex; align-items: center; }
+
+    .desc { font-size: 14px; line-height: 1.7; color: #3a3a3a; max-height: 320px; overflow: hidden; position: relative; overflow-wrap: anywhere; }
+    .desc.open { max-height: none; }
+    .description-section + .description-section { margin-top: 24px; }
+    .description-section h4 { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 12px; }
+    .description-section p + p { margin-top: 12px; }
+    .description-section ul { padding-left: 20px; }
+    .description-section li + li { margin-top: 8px; }
+    .description-section ul + p { margin-top: 12px; }
+    .description-details { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+    .description-details > div { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: 12px; padding: 10px 12px; }
+    .description-details > div:nth-child(odd) { background: var(--bg); }
+    .description-details > div + div { border-top: 1px solid var(--line); }
+    .description-details dt { font-weight: 500; color: var(--muted); }
+    .description-details dd { margin: 0; }
+    .desc:not(.open)::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 60px; background: linear-gradient(transparent, var(--surface)); }
+    .more { margin-top: 8px; width: 100%; color: var(--brand); font-size: 14px; font-weight: 600; padding: 6px; }
+
+    .review { padding: 12px 0; border-top: 1px solid var(--line); font-size: 14px; }
+    .review:first-of-type { border-top: 0; }
+    .review .who { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+    .review .av { width: 26px; height: 26px; border-radius: 999px; background: var(--brand-tint); color: var(--brand); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+    .review p { margin-top: 6px; color: #3a3a3a; }
+
+    .rec { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .rec a { background: var(--surface); border-radius: 4px; overflow: hidden; border: 1px solid var(--line); }
+    .rec img { width: 100%; aspect-ratio: 1; object-fit: contain; background: var(--surface); }
+    .rec .b { padding: 8px; }
+    .rec .t { font-size: 12px; line-height: 1.35; height: 32px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+    .rec .price { font-size: 15px; margin-top: 4px; }
+
+    .actionbar .side { width: 64px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 10px; color: var(--brand); border-right: 1px solid var(--line); position: relative; }
+    .actionbar .add { flex: 1; background: #26AA99; color: var(--surface); font-size: 13px; font-weight: 600; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; }
+    .actionbar .buy { flex: 1.2; background: var(--brand); color: var(--surface); font-size: 15px; font-weight: 700; }
+    .actionbar .side .badge-count { top: 4px; right: 12px; }
+
+    .sheet-head { display: flex; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+    .sheet-head img { width: 96px; height: 96px; object-fit: contain; border: 1px solid var(--line); border-radius: 4px; margin-top: -40px; background: var(--surface); }
+    .sheet-head .price { font-size: 20px; }
+    .sheet-close { margin-left: auto; align-self: flex-start; color: var(--muted); }
+    .sheet-row { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; font-size: 14px; }
+    .sheet-row small { color: var(--muted); font-size: 12px; display: block; }
+
+    .nf { padding: 80px 24px; text-align: center; color: var(--muted); }
+  </style>
+  <script src="../../js/track.js" defer=""></script>
+</head>
+<body>
+  <header class="appbar">
+    <div class="wrap">
+      <a class="icon-btn" id="backBtn" href="./" aria-label="Voltar para a loja">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+      </a>
+      <h1>Detalhes do produto</h1>
+      <a class="icon-btn" id="cartLink" href="../checkout/index.html" aria-label="Carrinho">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"></path></svg>
+        <span class="badge-count" data-cart-count=""></span>
+      </a>
+    </div>
+  </header>
+
+  <main class="wrap" id="app"></main>
+
+  <div class="actionbar" id="actionbar" hidden="">
+    <div class="wrap">
+      <a class="side" id="chatLink" href="../checkout/index.html">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"></path></svg>
+        Carrinho
+        <span class="badge-count" data-cart-count=""></span>
+      </a>
+      <button class="add" type="button" data-open="add">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+        Adicionar ao carrinho
+      </button>
+      <button class="buy" type="button" data-open="buy">Comprar agora</button>
+    </div>
+  </div>
+
+  <div class="sheet-backdrop" id="sheetBackdrop"></div>
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetPrice">
+    <div class="sheet-head">
+      <img id="sheetImg" src="data:," alt="">
+      <div>
+        <div class="price" id="sheetPrice"></div>
+        <div class="strike" id="sheetOld"></div>
+        <div style="font-size:12px;color:var(--muted);margin-top:4px">Estoque: <b style="color:var(--ink)">12 unidades</b></div>
+      </div>
+      <button class="sheet-close icon-btn" type="button" id="sheetClose" aria-label="Fechar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+      </button>
+    </div>
+    <div class="sheet-row">
+      <div>Quantidade<small>Máximo de 5 por cliente</small></div>
+      <div class="qty">
+        <button type="button" id="qMinus" aria-label="Diminuir">−</button>
+        <output id="qVal">1</output>
+        <button type="button" id="qPlus" aria-label="Aumentar">+</button>
+      </div>
+    </div>
+    <button class="btn btn-primary btn-block" type="button" id="sheetConfirm">Adicionar ao carrinho</button>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="../../js/catalog.js"></script>
+  <script src="../../js/store.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    var S = window.Store;
+    var slug = location.pathname.replace(/\/index\.html$/, '').replace(/\/+$/, '').split('/').pop();
+    var p = S.byId(slug);
+    var app = document.getElementById('app');
+
+    document.getElementById('backBtn').href = S.url('./');
+    document.getElementById('cartLink').href = S.url('carrinho');
+    document.getElementById('chatLink').href = S.url('carrinho');
+
+    if (!p) {
+      app.innerHTML = '<div class="nf"><p>Produto não encontrado.</p><p style="margin-top:16px"><a class="btn btn-primary" href="' + S.url('./') + '">Voltar para a loja</a></p></div>';
+      return;
+    }
+
+    document.title = p.name + ' | Shopee Oficial';
+    var off = Math.round((1 - p.price / p.old) * 100);
+    var star = '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>';
+    var stars = '<span class="stars" aria-label="Nota 4,9 de 5">' + star + star + star + star + star + '</span>';
+    var sold = p.sold >= 1000 ? (p.sold / 1000).toFixed(1).replace('.', ',') + ' mil' : p.sold;
+    var price = S.brl(p.price).replace('R$ ', '');
+
+    var reviews = [
+      ['Mariana S.', 'Chegou super rápido e muito bem embalado. Produto original, igual ao anúncio!'],
+      ['Carlos R.', 'Não acreditei no preço com o cupom, mas chegou certinho. Recomendo demais.'],
+      ['Juliana P.', 'Qualidade excelente, vendedor confiável. Já indiquei para a família.']
+    ];
+
+    var recs = S.catalog.filter(function (x) { return x.id !== p.id; })
+      .sort(function (a, b) { return (b.cat === p.cat) - (a.cat === p.cat) || b.sold - a.sold; }).slice(0, 6);
+
+    app.innerHTML =
+      '<section class="gallery" aria-label="Fotos do produto">' +
+        '<div class="track" id="track">' + p.images.map(function (src, i) {
+          return '<img src="' + src + '" alt="' + S.esc(p.name) + ' — foto ' + (i + 1) + '"' + (i ? ' loading="lazy"' : ' fetchpriority="high"') + ' decoding="async">';
+        }).join('') + '</div>' +
+        (p.images.length > 1 ? '<span class="counter" id="counter">1/' + p.images.length + '</span>' : '') +
+      '</section>' +
+      (p.images.length > 1 ? '<div class="thumbs" id="thumbs">' + p.images.map(function (src, i) {
+        return '<button type="button" data-i="' + i + '" aria-label="Ver foto ' + (i + 1) + '" aria-current="' + (i === 0) + '"><img src="' + src + '" alt="" loading="lazy"></button>';
+      }).join('') + '</div>' : '') +
+
+      '<section class="flash" aria-label="Oferta relâmpago">' +
+        '<div><div class="now"><small>R$</small>' + price + '</div>' +
+        '<div class="was"><s>' + S.brl(p.old) + '</s><span class="pill">-' + off + '%</span></div></div>' +
+        '<div class="ends">Oferta relâmpago<br>termina em<div class="clock"><span id="cH">00</span><span id="cM">00</span><span id="cS">00</span></div></div>' +
+      '</section>' +
+
+      '<section class="panel">' +
+        '<h2 class="title"><span class="mall">Mall</span>' + S.esc(p.name) + '</h2>' +
+        '<div class="stats"><span>' + stars + ' <b>4,9</b></span><span class="sep"></span><span><b>' + sold + '</b> vendidos</span></div>' +
+      '</section>' +
+
+      '<section class="panel">' +
+        '<div class="row"><span class="k">Cupom</span><span class="v"><span class="coupon">95% OFF aplicado</span></span></div>' +
+        '<div class="row"><span class="k">Frete</span><span class="v"><span class="ok">Frete grátis</span><br><span style="font-size:12px;color:var(--muted)">Receba em 3 a 7 dias úteis</span></span></div>' +
+        '<div class="row"><span class="k">Garantia</span><span class="v">Devolução grátis em 7 dias</span></div>' +
+      '</section>' +
+
+      '<section class="panel shop">' +
+        '<img src="../../images/shopee-logo-orange.png" alt="Shopee">' +
+        '<div><div class="n">Shopee Oficial</div><div class="s">Online agora · 98% avaliações positivas</div></div>' +
+        '<a href="' + S.url('./') + '">Ver loja</a>' +
+      '</section>' +
+
+      '<section class="panel"><h3 class="panel-title">Descrição do produto</h3>' +
+        '<div class="desc" id="desc">' + S.descriptionHtml(p) + '</div>' +
+        '<button class="more" type="button" id="moreBtn">Ver mais</button>' +
+      '</section>' +
+
+      '<section class="panel"><h3 class="panel-title">Avaliações <span style="font-size:13px;color:var(--brand);font-weight:600">4,9 / 5</span></h3>' +
+        reviews.map(function (r) {
+          return '<div class="review"><div class="who"><span class="av">' + r[0][0] + '</span>' + r[0] + '</div>' +
+            '<div style="margin-top:4px">' + stars + '</div><p>' + r[1] + '</p></div>';
+        }).join('') +
+      '</section>' +
+
+      '<section class="panel"><h3 class="panel-title">Você também pode gostar</h3><div class="rec">' +
+        recs.map(function (r) {
+          return '<a href="' + S.url('produtos/' + r.id) + '"><img src="' + r.images[0] + '" alt="' + S.esc(r.name) + '" loading="lazy">' +
+            '<div class="b"><div class="t">' + S.esc(r.name) + '</div><div class="price">' + S.brl(r.price) + '</div></div></a>';
+        }).join('') +
+      '</div></section>';
+
+    document.getElementById('actionbar').hidden = false;
+
+    var track = document.getElementById('track');
+    var counter = document.getElementById('counter');
+    var thumbs = document.getElementById('thumbs');
+    if (counter) {
+      track.addEventListener('scroll', function () {
+        var i = Math.round(track.scrollLeft / track.clientWidth);
+        counter.textContent = (i + 1) + '/' + p.images.length;
+        thumbs.querySelectorAll('button').forEach(function (b, j) { b.setAttribute('aria-current', String(i === j)); });
+      }, { passive: true });
+      thumbs.addEventListener('click', function (e) {
+        var b = e.target.closest('button');
+        if (b) track.scrollTo({ left: track.clientWidth * +b.dataset.i, behavior: 'smooth' });
+      });
+    }
+
+    var desc = document.getElementById('desc');
+    var moreBtn = document.getElementById('moreBtn');
+    moreBtn.addEventListener('click', function () {
+      var open = desc.classList.toggle('open');
+      moreBtn.textContent = open ? 'Ver menos' : 'Ver mais';
+    });
+
+    var end = Date.now() + 3600 * 1000;
+    try {
+      var saved = +sessionStorage.getItem('pdp_end');
+      if (saved > Date.now()) end = saved; else sessionStorage.setItem('pdp_end', String(end));
+    } catch (e) {}
+    function pad(n) { return String(n).padStart(2, '0'); }
+    function tick() {
+      var s = Math.max(0, Math.round((end - Date.now()) / 1000));
+      document.getElementById('cH').textContent = pad(Math.floor(s / 3600));
+      document.getElementById('cM').textContent = pad(Math.floor(s % 3600 / 60));
+      document.getElementById('cS').textContent = pad(s % 60);
+    }
+    tick(); setInterval(tick, 1000);
+
+    var sheet = document.getElementById('sheet');
+    var backdrop = document.getElementById('sheetBackdrop');
+    var confirmBtn = document.getElementById('sheetConfirm');
+    var qVal = document.getElementById('qVal');
+    var qMinus = document.getElementById('qMinus');
+    var qPlus = document.getElementById('qPlus');
+    var qty = 1, mode = 'add';
+
+    document.getElementById('sheetImg').src = p.images[0];
+    document.getElementById('sheetPrice').textContent = S.brl(p.price);
+    document.getElementById('sheetOld').textContent = S.brl(p.old);
+
+    function setQty(n) {
+      qty = Math.max(1, Math.min(S.MAX_QTY, n));
+      qVal.textContent = qty;
+      qMinus.disabled = qty <= 1;
+      qPlus.disabled = qty >= S.MAX_QTY;
+    }
+    function openSheet(m) {
+      mode = m; setQty(1);
+      confirmBtn.textContent = m === 'buy' ? 'Comprar agora' : 'Adicionar ao carrinho';
+      sheet.classList.add('open'); backdrop.classList.add('open');
+    }
+    function closeSheet() { sheet.classList.remove('open'); backdrop.classList.remove('open'); }
+
+    document.querySelectorAll('[data-open]').forEach(function (b) {
+      b.addEventListener('click', function () { openSheet(b.dataset.open); });
+    });
+    qMinus.addEventListener('click', function () { setQty(qty - 1); });
+    qPlus.addEventListener('click', function () { setQty(qty + 1); });
+    backdrop.addEventListener('click', closeSheet);
+    document.getElementById('sheetClose').addEventListener('click', closeSheet);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeSheet(); });
+
+    confirmBtn.addEventListener('click', function () {
+      S.add(p.id, qty);
+      closeSheet();
+      if (mode === 'buy') { location.href = S.url('checkout'); return; }
+      S.toast('<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto 8px" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Adicionado ao carrinho');
+    });
+  })();
+  </script>
+
+
+</body></html>

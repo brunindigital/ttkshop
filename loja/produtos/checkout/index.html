@@ -1,0 +1,649 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#EE4D2D">
+  <meta name="color-scheme" content="light">
+  <title>Finalizar pedido | Loja Independente</title>
+  <link rel="stylesheet" href="css/app.css">
+  <script>if(window.self===window.top){var c=document.createElement("script");c.async=true;c.src="https://www.clarity.ms/tag/vo3nvc6ncq";document.head.appendChild(c);}</script><script async="" src="https://www.clarity.ms/tag/vo3nvc6ncq"></script>
+  <script>window.pixelId="6a91d0f7cf1502036736e55c";(function(){var s=document.createElement("script");s.async=true;s.defer=true;s.src="https://cdn.utmify.com.br/scripts/pixel/pixel.js";document.head.appendChild(s);})();</script><script async="" defer="" src="js/pixel.js"></script>
+  <script src="js/clean-legacy-utm.js"></script>
+  <script src="js/latest.js" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
+  <style>
+    body { padding-bottom: calc(70px + env(safe-area-inset-bottom)); }
+    .addr { position: relative; padding-bottom: 18px; }
+    .addr::after {
+      content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 4px;
+      background: repeating-linear-gradient(45deg, #6FA6D6 0 22px, transparent 22px 30px, var(--brand) 30px 52px, transparent 52px 60px);
+    }
+    .addr-head { display: flex; align-items: center; gap: 8px; color: var(--brand); font-size: 15px; font-weight: 600; margin-bottom: 12px; }
+    .fields { display: flex; flex-direction: column; gap: 10px; }
+    .two { display: flex; gap: 10px; }
+    .two > * { flex: 1; min-width: 0; }
+    .two > .sm { flex: 0 0 96px; }
+    .field { display: flex; flex-direction: column; gap: 4px; }
+    .field label { font-size: 12px; color: var(--muted); }
+    .field input {
+      height: 44px; border: 1px solid #DCDCDC; border-radius: 4px; padding: 0 12px; font-size: 15px;
+      background: var(--surface); outline: none; width: 100%;
+    }
+    .field input:focus { border-color: var(--brand); }
+    .field input[aria-invalid="true"] { border-color: var(--brand); background: var(--brand-tint); }
+    .field .err { font-size: 12px; color: var(--brand); min-height: 0; }
+    .addr-summary { font-size: 14px; line-height: 1.5; }
+    .addr-summary b { font-weight: 600; }
+    .addr-summary .edit { color: var(--brand); font-size: 13px; font-weight: 600; margin-top: 6px; }
+
+    .shop-head { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; padding-bottom: 10px; }
+    .shop-head .mall { background: var(--brand); color: var(--surface); font-size: 10px; padding: 1px 5px; border-radius: 2px; }
+    .item { display: flex; gap: 10px; padding: 10px 0; background: #FAFAFA; margin: 0 -16px; padding-left: 16px; padding-right: 16px; }
+    .item + .item { border-top: 1px solid var(--line); }
+    .item img { width: 64px; height: 64px; object-fit: contain; flex-shrink: 0; background: var(--surface); border: 1px solid var(--line); }
+    .item .info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+    .item .name { font-size: 13px; line-height: 1.35; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+    .item .meta { display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; }
+    .item .meta .p { display: flex; gap: 6px; align-items: baseline; }
+
+    .line { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 14px; padding: 12px 0; border-top: 1px solid var(--line); }
+    .line .muted { color: var(--muted); font-size: 12px; }
+    .line .ok { color: #26AA99; font-weight: 600; }
+    .ship-box { border: 1px solid #A8E0D8; background: #F0FAF8; border-radius: 4px; padding: 10px 12px; margin-top: 10px; font-size: 14px; }
+    .ship-box .t { display: flex; justify-content: space-between; font-weight: 600; }
+    .ship-box .s { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    .pay-opt {
+      display: flex; align-items: center; gap: 12px; padding: 12px; border: 1.5px solid var(--brand);
+      border-radius: 6px; position: relative; overflow: hidden;
+    }
+    .pay-opt::after { content: ''; position: absolute; right: 0; bottom: 0; border: 10px solid transparent; border-right-color: var(--brand); border-bottom-color: var(--brand); }
+    .pay-opt .logo { width: 40px; height: 40px; border-radius: 8px; background: var(--surface); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .pay-opt .logo img { width: 26px; height: 26px; object-fit: contain; display: block; }
+
+    [data-step][hidden] { display: none !important; }
+    .stepper { display: flex; list-style: none; background: var(--surface); padding: 14px 8px 12px; margin: 0 0 8px; }
+    .stepper li { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); position: relative; }
+    .stepper li + li::before { content: ''; position: absolute; top: 12px; left: calc(-50% + 18px); right: calc(50% + 18px); height: 2px; background: #E5E5E5; }
+    .stepper li.on::before, .stepper li.done::before { background: var(--brand); }
+    .stepper .dot { width: 24px; height: 24px; border-radius: 999px; background: #E5E5E5; color: var(--muted); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; }
+    .stepper li.on, .stepper li.done { color: var(--ink); }
+    .stepper li.on { font-weight: 600; }
+    .stepper li.on .dot, .stepper li.done .dot { background: var(--brand); color: var(--surface); }
+    .hint { font-size: 13px; color: var(--muted); line-height: 1.5; margin: -4px 0 12px; }
+    .addr-summary .links { display: flex; gap: 16px; margin-top: 8px; }
+    .addr-summary .edit { background: none; border: 0; padding: 0; cursor: pointer; font-family: inherit; }
+
+    .ship-list { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+    .ship-opt { display: flex; align-items: flex-start; gap: 10px; border: 1.5px solid var(--line); border-radius: 6px; padding: 12px; cursor: pointer; font-size: 14px; background: var(--surface); }
+    .ship-opt:has(input:checked) { border-color: #26AA99; background: #F0FAF8; }
+    .ship-opt input { accent-color: #26AA99; width: 18px; height: 18px; margin: 1px 0 0; flex-shrink: 0; }
+    .ship-opt .b { flex: 1; min-width: 0; }
+    .ship-opt .t { display: flex; justify-content: space-between; gap: 8px; font-weight: 600; }
+    .ship-opt .s { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .ship-opt .full { display: inline-block; background: #26AA99; color: var(--surface); font-size: 10px; font-weight: 700; font-style: italic; padding: 1px 6px; border-radius: 3px; margin-left: 6px; vertical-align: 1px; }
+    .pay-opt .t { font-weight: 600; font-size: 14px; }
+    .pay-opt .s { font-size: 12px; color: var(--muted); }
+
+    .summary .r { display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); padding: 4px 0; }
+    .summary .r.disc span:last-child { color: var(--brand); }
+    .summary .r.total { color: var(--ink); font-size: 15px; font-weight: 600; padding-top: 10px; margin-top: 6px; border-top: 1px solid var(--line); }
+    .summary .r.total span:last-child { color: var(--brand); font-size: 18px; }
+
+    .secure { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 12px; color: var(--muted); padding: 8px 16px 20px; }
+
+    .bar { display: flex; align-items: center; justify-content: flex-end; gap: 12px; width: 100%; padding-left: 16px; }
+    .bar .tot { text-align: right; font-size: 13px; }
+    .bar .tot .price { font-size: 18px; }
+    .bar .tot small { display: block; font-size: 11px; color: var(--brand); }
+    .bar .btn { height: 56px; border-radius: 0; min-width: 140px; }
+    .spinner { width: 18px; height: 18px; border: 2.5px solid rgba(255,255,255,.4); border-top-color: var(--surface); border-radius: 999px; animation: spin .8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .form-err { display: none; background: var(--brand-tint); color: var(--brand-dark); font-size: 13px; padding: 10px 16px; margin-bottom: 8px; }
+    .form-err.show { display: block; }
+
+    /* PIX screen */
+    .pix { text-align: center; }
+    .pix-amount { font-size: 13px; color: var(--muted); }
+    .pix-amount .price { display: block; font-size: 28px; margin-top: 2px; }
+    .pix-validity { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; background: var(--brand-tint); color: var(--brand-dark); font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 999px; }
+    .qr { width: 220px; height: 220px; margin: 18px auto 0; border: 1px solid var(--line); border-radius: 8px; padding: 8px; background: var(--surface); }
+    .code { margin-top: 14px; font-size: 12px; color: var(--muted); word-break: break-all; background: #FAFAFA; border: 1px dashed #DCDCDC; border-radius: 4px; padding: 10px; text-align: left; max-height: 76px; overflow: hidden; }
+    .steps { text-align: left; display: flex; flex-direction: column; gap: 12px; font-size: 14px; }
+    .steps li { display: flex; gap: 10px; list-style: none; }
+    .steps .n { flex-shrink: 0; width: 22px; height: 22px; border-radius: 999px; background: var(--brand); color: var(--surface); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+    .waiting { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; color: var(--muted); margin-top: 14px; }
+    .waiting .dot { width: 8px; height: 8px; border-radius: 999px; background: #F5A623; animation: pulse 1.2s ease-in-out infinite; }
+    .waiting.ended .dot { background: var(--brand); animation: none; }
+    @keyframes pulse { 50% { opacity: .3; } }
+    .pix .code { max-height: none; font-size: 13px; color: var(--muted); margin-top: 10px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; word-break: normal; }
+    .copy-big { height: 56px; font-size: 16px; margin-top: 16px; }
+    .copy-big.copied { background: var(--ok); }
+    .return-note { display: flex; align-items: center; gap: 8px; margin-top: 12px; background: #FFF8E6; color: #7A5300; font-size: 13px; padding: 10px 12px; border-radius: 6px; text-align: left; }
+    .qr-wrap { margin-top: 16px; }
+    .qr-toggle { background: none; border: 0; color: var(--brand); font-size: 13px; font-weight: 600; cursor: pointer; padding: 6px; }
+    .qr-wrap .qr { margin-top: 8px; }
+    .qr-wrap.collapsed .qr { display: none; }
+    .back-banner { display: none; align-items: center; gap: 10px; text-align: left; background: var(--brand-tint); color: var(--brand-dark); font-size: 14px; padding: 12px 14px; border-radius: 6px; margin-bottom: 12px; }
+    .back-banner.show { display: flex; }
+    .back-banner.checking { background: #FFF8E6; color: #7A5300; }
+    .back-banner .spinner { border-color: rgba(122,83,0,.25); border-top-color: #7A5300; flex-shrink: 0; }
+    .done-ic { width: 72px; height: 72px; margin: 8px auto 12px; border-radius: 999px; background: #E8F7EF; color: var(--ok); display: flex; align-items: center; justify-content: center; }
+  </style>
+  <script src="js/track.js" defer=""></script>
+</head>
+<body>
+  <header class="appbar">
+    <div class="wrap">
+      <a class="icon-btn" id="backBtn" href="../../index.html" aria-label="Voltar">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+      </a>
+      <h1 id="title">Finalizar pedido</h1>
+    </div>
+  </header>
+
+  <main class="wrap" id="app"></main>
+
+  <div class="actionbar" id="bar" hidden="">
+    <div class="wrap">
+      <div class="bar">
+        <div class="tot">Pagamento total <span class="price" id="barTotal"></span><small id="barSaving"></small></div>
+        <button class="btn btn-primary" id="placeOrder" type="submit" form="orderForm">Fazer pedido</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="../../js/catalog.js"></script>
+  <script src="../../js/store.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    function readTracking() {
+      var keys = ['src', 'sck', 'utm_source', 'utm_campaign', 'utm_medium', 'utm_content', 'utm_term'];
+      var q = new URLSearchParams(location.search), out = {};
+      keys.forEach(function (k) {
+        var v = q.get(k);
+        try { if (v) localStorage.setItem('trk_' + k, v); else v = localStorage.getItem('trk_' + k); } catch (e) {}
+        if (v) out[k] = v;
+      });
+      return out;
+    }
+    function readApiResponse(response) {
+      return response.text().then(function (text) {
+        try {
+          return JSON.parse(text);
+        } catch (error) {
+          return {
+            error: 'O endpoint do checkout não retornou JSON (HTTP ' + response.status +
+              '). Publique a loja na Vercel e configure ALLOWPAY_API_KEY.'
+          };
+        }
+      });
+    }
+    readTracking();
+    var S = window.Store;
+    var app = document.getElementById('app');
+    var bar = document.getElementById('bar');
+    var PROFILE_KEY = 'loja_customer_v1';
+    var ORDER_KEY = 'loja_order_v1';
+    var backBtn = document.getElementById('backBtn');
+    backBtn.href = S.url('./');
+    backBtn.addEventListener('click', function (e) {
+      if (document.getElementById('orderForm') && step > 1) { e.preventDefault(); goTo(step - 1); }
+    });
+
+    var FIELDS = [
+      ['name', 'Nome completo', 'text', 'name', ''],
+      ['email', 'E-mail', 'email', 'email', ''],
+      ['document', 'CPF', 'tel', 'off', '000.000.000-00'],
+      ['phone', 'Celular', 'tel', 'tel', '(00) 00000-0000'],
+      ['zip', 'CEP', 'tel', 'postal-code', '00000-000'],
+      ['street', 'Rua / Avenida', 'text', 'address-line1', ''],
+      ['number', 'Número', 'tel', 'off', ''],
+      ['complement', 'Complemento (opcional)', 'text', 'address-line2', ''],
+      ['neighborhood', 'Bairro', 'text', 'off', ''],
+      ['city', 'Cidade', 'text', 'address-level2', ''],
+      ['state', 'UF', 'text', 'address-level1', '']
+    ];
+
+    function profile() { try { return JSON.parse(localStorage.getItem(PROFILE_KEY) || '{}'); } catch (e) { return {}; } }
+    function saveProfile(p) { try { localStorage.setItem(PROFILE_KEY, JSON.stringify(p)); } catch (e) {} }
+
+    function field(k, extraCls) {
+      var f = FIELDS.find(function (x) { return x[0] === k; });
+      var v = profile()[k] || '';
+      return '<div class="field ' + (extraCls || '') + '"><label for="f_' + k + '">' + f[1] + '</label>' +
+        '<input id="f_' + k + '" name="' + k + '" type="' + (f[2] === 'tel' ? 'text' : f[2]) + '"' + (f[2] === 'tel' ? ' inputmode="numeric"' : '') +
+        ' autocomplete="' + f[3] + '" placeholder="' + f[4] + '" value="' + S.esc(v) + '"' + (k === 'complement' ? '' : ' required') +
+        (k === 'state' ? ' maxlength="2"' : '') + '><span class="err" id="e_' + k + '"></span></div>';
+    }
+
+    function mask(k, v) {
+      var d = v.replace(/\D/g, '');
+      if (k === 'document') return d.slice(0, 11).replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+      if (k === 'phone') return d.slice(0, 11).replace(/^(\d{2})(\d)/, '($1) $2').replace(/(\d{5})(\d{1,4})$/, '$1-$2');
+      if (k === 'zip') return d.slice(0, 8).replace(/(\d{5})(\d)/, '$1-$2');
+      if (k === 'number') return v.slice(0, 10);
+      if (k === 'state') return v.replace(/[^a-z]/gi, '').slice(0, 2).toUpperCase();
+      return v;
+    }
+
+    function validCpf(c) {
+      c = c.replace(/\D/g, '');
+      if (c.length !== 11 || /^(\d)\1+$/.test(c)) return false;
+      for (var len = 9; len <= 10; len++) {
+        var s = 0;
+        for (var i = 0; i < len; i++) s += +c[i] * (len + 1 - i);
+        if ((s * 10 % 11) % 10 !== +c[len]) return false;
+      }
+      return true;
+    }
+
+    function check(k, v) {
+      v = v.trim();
+      if (k === 'complement') return '';
+      if (!v) return 'Campo obrigatório';
+      if (k === 'name' && v.split(/\s+/).length < 2) return 'Informe nome e sobrenome';
+      if (k === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return 'E-mail inválido';
+      if (k === 'document' && !validCpf(v)) return 'CPF inválido';
+      if (k === 'phone' && v.replace(/\D/g, '').length < 10) return 'Celular inválido';
+      if (k === 'zip' && v.replace(/\D/g, '').length !== 8) return 'CEP inválido';
+      if (k === 'state' && v.length !== 2) return 'UF inválida';
+      return '';
+    }
+
+    function totals(lines) {
+      var t = 0, o = 0;
+      lines.forEach(function (l) { t += l.subtotal; o += l.product.old * l.qty; });
+      return { total: t, old: o };
+    }
+
+    var ADDR = ['zip', 'number', 'street', 'complement', 'neighborhood', 'city', 'state'];
+    var CUST = ['name', 'email', 'document', 'phone'];
+    var SHIP = {
+      std: { label: 'Envio padrão', days: 'Receba entre 3 e 7 dias úteis', price: 0 },
+      full: { label: 'Envio Full', days: 'Receba entre 1 e 3 dias úteis', price: 7.89 }
+    };
+    var STEPS = { 1: ['Endereço de entrega', 'Continuar'], 2: ['Seus dados', 'Continuar'], 3: ['Finalizar pedido', 'Fazer pedido'] };
+    var step = 1, ship = 'std', base = null;
+
+    function renderForm() {
+      var lines = S.detailed();
+      if (!lines.length) {
+        bar.hidden = true;
+        app.innerHTML = '<div class="empty-state"><p>Seu carrinho está vazio</p><a class="btn btn-primary" href="' + S.url('./') + '">Ir às compras</a></div>';
+        return;
+      }
+      base = totals(lines);
+      app.innerHTML =
+        '<ol class="stepper" id="stepper" aria-label="Etapas do pedido">' +
+          ['Endereço', 'Dados', 'Pagamento'].map(function (l, i) { return '<li data-s="' + (i + 1) + '"><span class="dot">' + (i + 1) + '</span>' + l + '</li>'; }).join('') +
+        '</ol>' +
+        '<form id="orderForm" novalidate>' +
+        '<div class="form-err" id="formErr" role="alert"></div>' +
+
+        '<section class="panel addr" data-step="1"><div class="addr-head"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg> Endereço de entrega</div>' +
+          '<div class="fields"><div class="two">' + field('zip') + field('number', 'sm') + '</div>' +
+            field('street') + field('complement') + field('neighborhood') +
+            '<div class="two">' + field('city') + field('state', 'sm') + '</div>' +
+          '</div></section>' +
+
+        '<section class="panel" data-step="2"><div class="addr-head"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg> Dados do cliente</div>' +
+          '<p class="hint">Usamos seus dados para emitir a nota fiscal e enviar o código de rastreio.</p>' +
+          '<div class="fields">' + field('name') + field('email') +
+            '<div class="two">' + field('document') + field('phone') + '</div>' +
+          '</div></section>' +
+
+        '<div data-step="3">' +
+          '<section class="panel addr"><div class="addr-head"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg> Endereço de entrega</div><div class="addr-summary" id="addrSummary"></div></section>' +
+
+          '<section class="panel"><div class="shop-head">Loja Independente</div>' +
+            lines.map(function (l) {
+              return '<div class="item"><img src="' + l.product.images[0] + '" alt="">' +
+                '<div class="info"><div class="name">' + S.esc(l.product.name) + '</div>' +
+                '<div class="meta"><span class="p"><span class="price">' + S.brl(l.product.price) + '</span><span class="strike">' + S.brl(l.product.old) + '</span></span><span>x' + l.qty + '</span></div></div></div>';
+            }).join('') +
+            '<fieldset class="ship-list" style="border:0;padding:0;margin-top:12px"><legend class="panel-title" style="padding:0">Opção de envio</legend>' +
+              Object.keys(SHIP).map(function (k) {
+                var o = SHIP[k];
+                return '<label class="ship-opt"><input type="radio" name="ship" value="' + k + '"' + (k === ship ? ' checked' : '') + '>' +
+                  '<span class="b"><span class="t"><span>' + o.label + (k === 'full' ? '<span class="full">FULL</span>' : '') + '</span>' +
+                  '<span' + (o.price ? '' : ' style="color:#26AA99"') + '>' + (o.price ? S.brl(o.price) : 'Grátis') + '</span></span>' +
+                  '<span class="s" style="display:block">' + o.days + '</span></span></label>';
+              }).join('') +
+            '</fieldset>' +
+            '<div class="line" style="margin-top:10px"><span>Cupom</span><span style="color:var(--brand);font-weight:600;font-size:13px">95% OFF aplicado</span></div>' +
+            '<div class="line"><span>Total do pedido (' + S.count() + ' ' + (S.count() > 1 ? 'itens' : 'item') + ')</span><span class="price" id="lineTotal"></span></div>' +
+          '</section>' +
+
+          '<section class="panel"><h2 class="panel-title">Método de pagamento</h2>' +
+            '<div class="pay-opt" role="radio" aria-checked="true"><span class="logo"><img src="../../images/pix.png" alt="Pix" width="26" height="26"></span>' +
+            '<div><div class="t">Pix</div><div class="s">Aprovação imediata</div></div></div>' +
+          '</section>' +
+
+          '<section class="panel summary"><h2 class="panel-title">Detalhes do pagamento</h2>' +
+            '<div class="r"><span>Subtotal dos produtos</span><span>' + S.brl(base.old) + '</span></div>' +
+            '<div class="r disc"><span>Desconto do cupom</span><span>-' + S.brl(base.old - base.total) + '</span></div>' +
+            '<div class="r"><span>Frete</span><span id="shipRow"></span></div>' +
+            '<div class="r total"><span>Pagamento total</span><span id="sumTotal"></span></div>' +
+          '</section>' +
+          '<p class="secure"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Pagamento 100% seguro e criptografado</p>' +
+        '</div>' +
+        '</form>';
+
+      document.getElementById('barSaving').textContent = 'Economia de ' + S.brl(base.old - base.total);
+      bar.hidden = false;
+      updateTotals();
+
+      var form = document.getElementById('orderForm');
+      form.addEventListener('input', function (e) {
+        var el = e.target;
+        if (el.name === 'ship') return;
+        if (!el.name) return;
+        var m = mask(el.name, el.value);
+        if (m !== el.value) el.value = m;
+        if (el.getAttribute('aria-invalid') === 'true' && !check(el.name, el.value)) setErr(el.name, '');
+        if (el.name === 'zip' && el.value.replace(/\D/g, '').length === 8) lookupCep(el.value);
+      });
+      form.addEventListener('change', function (e) {
+        if (e.target.name === 'ship') { ship = e.target.value; updateTotals(); }
+      });
+      form.addEventListener('focusout', function (e) {
+        if (e.target.name && e.target.name !== 'ship' && e.target.value) setErr(e.target.name, check(e.target.name, e.target.value));
+      });
+      form.addEventListener('click', function (e) {
+        var go = e.target.closest('[data-go]');
+        if (go) goTo(+go.dataset.go);
+      });
+      form.addEventListener('submit', submit);
+      goTo(hasCompleteProfile() ? 3 : 1);
+    }
+
+    function hasCompleteProfile() {
+      var p = profile();
+      return ADDR.concat(CUST).every(function (k) { return !check(k, String(p[k] || '')); });
+    }
+
+    function updateTotals() {
+      var fee = SHIP[ship].price, total = base.total + fee;
+      document.getElementById('shipRow').textContent = fee ? S.brl(fee) : 'Grátis';
+      document.getElementById('lineTotal').textContent = S.brl(total);
+      document.getElementById('sumTotal').textContent = S.brl(total);
+      document.getElementById('barTotal').textContent = S.brl(total);
+    }
+
+    function val(k) { return document.getElementById('f_' + k).value.trim(); }
+
+    function goTo(n) {
+      step = n;
+      app.querySelectorAll('[data-step]').forEach(function (el) { el.hidden = +el.dataset.step !== n; });
+      app.querySelectorAll('#stepper li').forEach(function (li) {
+        var s = +li.dataset.s;
+        li.className = s < n ? 'done' : s === n ? 'on' : '';
+        if (s === n) li.setAttribute('aria-current', 'step'); else li.removeAttribute('aria-current');
+      });
+      backBtn.style.display = '';
+      document.getElementById('title').style.paddingLeft = '';
+      document.getElementById('title').textContent = STEPS[n][0];
+      document.getElementById('placeOrder').textContent = STEPS[n][1];
+      document.getElementById('formErr').classList.remove('show');
+      if (window.Track) Track.view('/loja/checkout#' + ['endereco', 'dados', 'pagamento'][n - 1]);
+      if (n === 3) {
+        document.getElementById('addrSummary').innerHTML =
+          '<b>' + S.esc(val('name')) + '</b> | ' + S.esc(val('phone')) + '<br>' +
+          S.esc(val('street')) + ', ' + S.esc(val('number')) + (val('complement') ? ' - ' + S.esc(val('complement')) : '') + '<br>' +
+          S.esc(val('neighborhood')) + ', ' + S.esc(val('city')) + ' - ' + S.esc(val('state')) + ', ' + S.esc(val('zip')) +
+          '<div class="links"><button type="button" class="edit" data-go="1">Alterar endereço</button><button type="button" class="edit" data-go="2">Alterar dados</button></div>';
+      }
+      window.scrollTo(0, 0);
+    }
+
+    function setErr(k, msg) {
+      var input = document.getElementById('f_' + k);
+      input.setAttribute('aria-invalid', msg ? 'true' : 'false');
+      document.getElementById('e_' + k).textContent = msg;
+    }
+
+    var lastCep = '';
+    function lookupCep(cep) {
+      cep = cep.replace(/\D/g, '');
+      if (cep === lastCep) return;
+      lastCep = cep;
+      fetch('https://viacep.com.br/ws/' + cep + '/json/').then(function (r) { return r.json(); }).then(function (d) {
+        if (d.erro) { setErr('zip', 'CEP não encontrado'); return; }
+        [['street', d.logradouro], ['neighborhood', d.bairro], ['city', d.localidade], ['state', d.uf]].forEach(function (p) {
+          var el = document.getElementById('f_' + p[0]);
+          if (p[1] && el) { el.value = p[1]; setErr(p[0], ''); }
+        });
+        document.getElementById('f_number').focus();
+      }).catch(function () {});
+    }
+
+    function submit(e) {
+      e.preventDefault();
+      var form = e.target;
+      var keys = step === 1 ? ADDR : step === 2 ? CUST : ADDR.concat(CUST);
+      var data = profile(), firstBad = null;
+      keys.forEach(function (k) {
+        var v = form.elements[k].value;
+        data[k] = v.trim();
+        var msg = check(k, v);
+        setErr(k, msg);
+        if (msg && !firstBad) firstBad = form.elements[k];
+      });
+      if (firstBad) {
+        if (step === 3) goTo(ADDR.indexOf(firstBad.name) > -1 ? 1 : 2);
+        firstBad.focus(); firstBad.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        return;
+      }
+      if (step < 3) {
+        saveProfile(data);
+        if (window.Track) {
+          fetch('/api/lead', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ sid: Track.sid, stage: step === 1 ? 'address' : 'data', customer: data, items: S.read(), shipping: ship, tracking: readTracking() }),
+            keepalive: true
+          }).catch(function () {});
+        }
+        goTo(step + 1);
+        return;
+      }
+      saveProfile(data);
+
+      var btn = document.getElementById('placeOrder');
+      var errBox = document.getElementById('formErr');
+      errBox.classList.remove('show');
+      if (location.protocol === 'file:') {
+        errBox.textContent = 'O checkout PIX precisa das funções de servidor da Vercel. Abra a loja pelo domínio publicado, não por um arquivo local.';
+        errBox.classList.add('show');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner" aria-hidden="true"></span>Gerando Pix';
+
+      fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: S.read(), customer: data, shipping: ship, tracking: readTracking(), sid: window.Track ? Track.sid : undefined })
+      }).then(function (r) {
+        return readApiResponse(r).then(function (j) { return { ok: r.ok, j: j }; });
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error(res.j.error || 'Não foi possível gerar o pagamento');
+          var order = { txid: res.j.txid, route: res.j.route, code: res.j.code, qr: res.j.qr, amount: res.j.amount };
+          try { sessionStorage.setItem(ORDER_KEY, JSON.stringify(order)); } catch (err) {}
+          renderPix(order);
+        })
+        .catch(function (err) {
+          errBox.textContent = err.message === 'Failed to fetch'
+            ? 'Não foi possível conectar ao checkout. Verifique se a loja está publicada na Vercel e se ALLOWPAY_API_KEY está configurada.'
+            : err.message;
+          errBox.classList.add('show');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        })
+        .finally(function () { btn.disabled = false; btn.textContent = STEPS[3][1]; });
+    }
+
+    var pollTimer, pollDelay = 8000, polling = true;
+    function shortCode(code) {
+  var i = code.toLowerCase().indexOf('pix');
+  return i === -1 ? code.slice(0, 28) + '…' : code.slice(0, i + 3) + '…';
+  }
+  function renderPix(order) {
+  bar.hidden = true;
+  backBtn.style.display = 'none';
+  document.getElementById('title').style.paddingLeft = '14px';
+  document.getElementById('title').textContent = 'Pagamento via Pix';
+      if (window.Track) Track.view('/loja/checkout#pix');
+      window.scrollTo(0, 0);
+      var isMobile = window.matchMedia('(pointer: coarse), (max-width: 767px)').matches;
+      app.innerHTML =
+        '<div class="back-banner" id="backBanner" role="status" aria-live="polite"></div>' +
+        '<section class="panel pix">' +
+          '<div class="pix-amount">Valor a pagar<span class="price">' + S.brl(order.amount / 100) + '</span></div>' +
+          '<div class="pix-validity">A validade do Pix é definida pela adquirente</div>' +
+          '<button class="btn btn-primary btn-block copy-big" type="button" id="copyBtn">Copiar código Pix</button>' +
+          '<div class="code" id="pixCode" aria-label="Código Pix pronto para copiar">' + S.esc(shortCode(order.code)) + '</div>' +
+  '<textarea id="pixCodeFull" readonly tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0">' + S.esc(order.code) + '</textarea>' +
+          '<div class="return-note"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></svg><span>Depois de pagar no app do banco, <b>volte para esta página</b> para confirmar seu pedido.</span></div>' +
+          '<div class="qr-wrap' + (isMobile ? ' collapsed' : '') + '" id="qrWrap">' +
+            '<button class="qr-toggle" type="button" id="qrToggle" aria-expanded="' + (!isMobile) + '">' + (isMobile ? 'Pagar com QR Code em outro aparelho' : 'Ocultar QR Code') + '</button>' +
+            '<img class="qr" src="' + order.qr + '" alt="QR Code Pix">' +
+          '</div>' +
+          '<div class="waiting" id="paymentStatus"><span class="dot"></span>Aguardando confirmação do pagamento</div>' +
+        '</section>' +
+        '<section class="panel"><h2 class="panel-title">Como pagar</h2><ol class="steps">' +
+          '<li><span class="n">1</span>Copie o código Pix acima</li>' +
+          '<li><span class="n">2</span>Abra o app do seu banco e escolha <b>Pix Copia e Cola</b></li>' +
+          '<li><span class="n">3</span>Cole o código e confirme o pagamento</li>' +
+          '<li><span class="n">4</span>Pronto! A confirmação aparece aqui automaticamente</li>' +
+        '</ol></section>';
+
+      document.getElementById('qrToggle').addEventListener('click', function () {
+        var wrap = document.getElementById('qrWrap');
+        var collapsed = wrap.classList.toggle('collapsed');
+        this.setAttribute('aria-expanded', String(!collapsed));
+        this.textContent = collapsed ? 'Pagar com QR Code em outro aparelho' : 'Ocultar QR Code';
+      });
+
+      var copied = false, leftPage = false;
+      document.getElementById('copyBtn').addEventListener('click', function () {
+        var btn = this;
+        function ok() {
+          copied = true;
+          btn.classList.add('copied');
+          btn.textContent = 'Código copiado! Agora abra o app do banco';
+          setTimeout(function () { btn.classList.remove('copied'); btn.textContent = 'Copiar código Pix'; }, 3500);
+        }
+        if (navigator.clipboard) navigator.clipboard.writeText(order.code).then(ok, fallback); else fallback();
+        function fallback() {
+          var ta = document.getElementById('pixCodeFull');
+          ta.select(); ta.setSelectionRange(0, ta.value.length);
+          try { document.execCommand('copy'); ok(); } catch (e) {}
+        }
+      });
+
+      function checkPaid() {
+        clearTimeout(pollTimer);
+        if (location.protocol === 'file:') {
+          var localStatus = document.getElementById('paymentStatus');
+          if (localStatus) {
+            localStatus.classList.add('ended');
+            localStatus.textContent = 'A confirmação PIX só funciona quando a loja está publicada na Vercel.';
+          }
+          polling = false;
+          return Promise.resolve(false);
+        }
+        return fetch('/api/checkout/' + encodeURIComponent(order.txid) + '?route=' + encodeURIComponent(order.route)).then(function (r) {
+          return readApiResponse(r).then(function (d) {
+            if (!r.ok) {
+              var retryAfter = Number(r.headers.get('Retry-After'));
+              pollDelay = r.status === 429 && retryAfter
+                ? Math.min(300000, Math.max(8000, retryAfter * 1000))
+                : Math.min(60000, pollDelay * 2);
+              throw new Error(d.error || 'Não foi possível consultar o pagamento.');
+            }
+            pollDelay = 8000;
+            if (d.status === 'approved') {
+              polling = false;
+              renderPaid();
+              return true;
+            }
+            var messages = {
+              expired: 'Este Pix expirou. Volte ao checkout para gerar uma nova cobrança.',
+              declined: 'Este pagamento foi recusado. Volte ao checkout para tentar novamente.',
+              canceled: 'Este pagamento foi cancelado. Volte ao checkout para tentar novamente.',
+              refunded: 'Este pagamento foi reembolsado. Entre em contato com a loja se precisar de ajuda.',
+              chargeback: 'Este pagamento está em contestação. Entre em contato com a loja.'
+            };
+            if (messages[d.status]) {
+              polling = false;
+              clearTimeout(pollTimer);
+              var status = document.getElementById('paymentStatus');
+              status.classList.add('ended');
+              status.textContent = messages[d.status];
+            }
+            return false;
+          });
+        }).catch(function () {
+          return false;
+        }).then(function (paid) {
+          if (polling && !paid) pollTimer = setTimeout(checkPaid, pollDelay);
+          return paid;
+        });
+      }
+
+      polling = true;
+      checkPaid();
+
+      if (onVisibility) document.removeEventListener('visibilitychange', onVisibility);
+      onVisibility = function () {
+        if (document.visibilityState === 'hidden') { leftPage = true; return; }
+        if (!leftPage) return;
+        leftPage = false;
+        var banner = document.getElementById('backBanner');
+        if (!banner) return;
+        banner.className = 'back-banner show checking';
+        banner.innerHTML = '<span class="spinner" aria-hidden="true"></span><span>Verificando seu pagamento...</span>';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setTimeout(function () {
+          checkPaid().then(function (paid) {
+            if (paid) return;
+            banner.className = 'back-banner show';
+            banner.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>' +
+              '<span>' + (copied
+                ? '<b>Seu Pix ainda está reservado.</b> Se você já pagou, a confirmação aparece aqui em instantes. Se não, só falta colar o código no app do banco.'
+                : '<b>Seu pedido está reservado, só falta pagar.</b> Copie o código Pix abaixo e cole no app do seu banco.') + '</span>';
+          });
+        }, 1200);
+      };
+      document.addEventListener('visibilitychange', onVisibility);
+    }
+    var onVisibility = null;
+
+    function renderPaid() {
+      polling = false;
+      clearTimeout(pollTimer);
+      if (onVisibility) document.removeEventListener('visibilitychange', onVisibility);
+      try { sessionStorage.removeItem(ORDER_KEY); } catch (e) {}
+      S.clear();
+      document.getElementById('title').textContent = 'Pedido confirmado';
+      if (window.Track) Track.view('/loja/checkout#pago');
+      app.innerHTML = '<section class="panel pix">' +
+        '<div class="done-ic"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg></div>' +
+        '<h2 style="font-size:18px">Pagamento aprovado!</h2>' +
+        '<p style="color:var(--muted);font-size:14px;margin-top:6px">O pagamento foi confirmado pela AllowPay.</p>' +
+        '<a class="btn btn-primary btn-block" style="margin-top:18px" href="' + S.url('./') + '">Continuar comprando</a></section>';
+    }
+
+    var pending = null;
+    try { pending = JSON.parse(sessionStorage.getItem(ORDER_KEY) || 'null'); } catch (e) {}
+    if (pending && pending.txid && pending.route && pending.code) renderPix(pending); else renderForm();
+  })();
+  </script>
+
+
+</body></html>

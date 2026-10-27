@@ -1,0 +1,451 @@
+<!DOCTYPE html><html lang="pt-br"><head>
+  
+  <meta charset="utf-8">
+
+  <script async="" src="js/fbevents.js"></script><script src="js/clean-legacy-utm.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#EE4D2D">
+  <title>Shopee - Responda e Ganhe!</title>
+  <link rel="icon" href="images/logo.png">
+
+  <script>
+    var timer = setInterval(function () {
+      const location = new URL(document.location.href);
+      const fields = ["src", "sck", "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
+      var links = document.getElementsByTagName("a");
+      for (var i = 0, n = links.length; i < n; i++) {
+        if (links[i].href.includes("#")) continue;
+        if (links[i].href) {
+          let link = new URL(links[i].href);
+          fields.forEach(field => {
+            if (location.searchParams.get(field)) link.searchParams.set(field, location.searchParams.get(field));
+          });
+          links[i].href = link.href;
+        }
+      }
+    }, 500);
+  </script>
+  <script src="js/latest.js" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1290268448927503');
+  fbq('init', '998747601730744');
+  fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1290268448927503&ev=PageView&noscript=1" alt="">
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=998747601730744&ev=PageView&noscript=1" alt="">
+  </noscript>
+  <!-- End Meta Pixel Code -->
+
+  <style>
+    @font-face {
+      font-family: 'Inter';
+      src: url('fonts/InterVariable.ttf') format('truetype');
+      font-weight: 100 900;
+      font-display: swap;
+    }
+
+    :root {
+      --brand: #EE4D2D;
+      --brand-dark: #D0381B;
+      --ink: #1F1F1F;
+      --muted: #6B6B6B;
+      --surface: #FFFFFF;
+      --canvas: #F6F6F7;
+      --gold: #FFB800;
+      --line: #EAEAEC;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      background: var(--canvas);
+      color: var(--ink);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100%;
+    }
+    body { overflow-x: hidden; }
+
+    .topbar {
+      position: sticky; top: 0; z-index: 20;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 20px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar img { height: 28px; width: auto; display: block; }
+    .verified {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 600; color: var(--muted);
+    }
+    .verified svg { width: 16px; height: 16px; color: var(--brand); }
+
+    .band {
+      background: var(--brand);
+      color: var(--surface);
+      padding: 20px 20px 84px;
+      text-align: center;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 12px; border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .eyebrow .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 3px rgba(255, 184, 0, 0.3);
+    }
+    .band h1 {
+      margin-top: 14px;
+      font-size: 25px; line-height: 1.15; font-weight: 800;
+      letter-spacing: -0.02em; text-wrap: balance;
+    }
+    .band h1 span { color: var(--gold); }
+    .band p {
+      margin: 10px auto 0; max-width: 320px;
+      font-size: 15px; line-height: 1.5; opacity: 0.9; text-wrap: pretty;
+    }
+
+    main {
+      display: flex; flex-direction: column; align-items: center;
+      padding: 0 16px 32px;
+    }
+    .card {
+      width: 100%; max-width: 440px;
+      margin-top: -72px;
+      background: var(--surface);
+      border-radius: 24px;
+      box-shadow: 0 20px 40px -20px rgba(31, 31, 31, 0.25), 0 1px 0 var(--line);
+      padding: 20px 16px 24px;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+
+    .progress {
+      display: flex; flex-direction: column; gap: 10px;
+      padding: 12px 14px; border-radius: 14px;
+      background: var(--canvas);
+    }
+    .progress-head {
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 14px; font-weight: 600;
+    }
+    .progress-head b { color: var(--brand); font-weight: 800; }
+    .progress-pills { display: flex; gap: 6px; }
+    .progress-pills i {
+      flex: 1; height: 8px; border-radius: 999px;
+      background: var(--line);
+      transition: background 0.35s ease;
+    }
+    .progress-pills i.done { background: var(--brand); }
+
+    .step { display: none; flex-direction: column; gap: 16px; }
+    .step.active { display: flex; animation: stepIn 0.4s cubic-bezier(0.2, 0.9, 0.3, 1) both; }
+
+    @keyframes stepIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-img {
+  display: block; width: 100%; height: auto;
+      border-radius: 16px;
+      background: var(--canvas);
+    }
+
+    .question {
+      font-size: 19px; line-height: 1.3; font-weight: 800;
+      letter-spacing: -0.01em; text-wrap: balance;
+    }
+    .question b { color: var(--brand); font-weight: 800; }
+
+    .options { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .option {
+      display: flex; align-items: center; gap: 12px;
+      width: 100%; min-height: 56px;
+      padding: 10px 14px 10px 10px;
+      border: 2px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+      color: var(--ink);
+      font: inherit; font-size: 15px; font-weight: 600; line-height: 1.35;
+      text-align: left; cursor: pointer;
+      transition: border-color 0.2s ease, background 0.2s ease, transform 0.1s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .option:active { transform: scale(0.985); }
+    .option .letter {
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; width: 34px; height: 34px;
+      border-radius: 10px;
+      background: var(--canvas);
+      color: var(--muted);
+      font-size: 14px; font-weight: 800;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .option .label { flex: 1; }
+    .option .check {
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; width: 22px; height: 22px;
+      border: 2px solid var(--line); border-radius: 50%;
+      color: var(--surface);
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .option .check svg { width: 12px; height: 12px; opacity: 0; transition: opacity 0.2s ease; }
+
+    .option[aria-checked="true"] {
+      border-color: var(--brand);
+      background: rgba(238, 77, 45, 0.06);
+    }
+    .option[aria-checked="true"] .letter { background: var(--brand); color: var(--surface); }
+    .option[aria-checked="true"] .check { background: var(--brand); border-color: var(--brand); }
+    .option[aria-checked="true"] .check svg { opacity: 1; }
+
+    .reward { align-items: center; text-align: center; }
+    .reward-icon {
+      display: flex; align-items: center; justify-content: center;
+      width: 64px; height: 64px; border-radius: 50%;
+      background: rgba(238, 77, 45, 0.1);
+      color: var(--brand);
+    }
+    .reward-icon svg { width: 30px; height: 30px; }
+    .reward h2 { font-size: 24px; font-weight: 800; letter-spacing: -0.01em; }
+    .reward p { font-size: 15px; line-height: 1.55; color: var(--muted); text-wrap: pretty; }
+    .reward p strong { color: var(--ink); }
+    .spins {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 14px; border-radius: 999px;
+      background: var(--canvas);
+      font-size: 14px; font-weight: 700;
+    }
+    .spins b {
+      padding: 2px 10px; border-radius: 8px;
+      background: var(--brand); color: var(--surface); font-weight: 800;
+    }
+
+    .cta {
+      position: relative; overflow: hidden;
+      width: 100%; height: 60px;
+      border: 0; border-radius: 16px;
+      background: var(--brand); color: var(--surface);
+      font: inherit; font-size: 17px; font-weight: 800;
+      letter-spacing: 0.02em; text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 10px 24px -8px rgba(238, 77, 45, 0.7);
+      transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    }
+    .cta:hover { background: var(--brand-dark); }
+    .cta:active { transform: scale(0.98); }
+    .cta:disabled {
+      background: var(--line); color: var(--muted);
+      box-shadow: none; cursor: not-allowed;
+    }
+    .cta.ready { animation: ctaPulse 1.8s ease-in-out infinite; }
+    .cta.ready::after {
+      content: '';
+      position: absolute; top: 0; left: -60%;
+      width: 40%; height: 100%;
+      background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+      animation: shine 2.6s ease-in-out infinite;
+    }
+    @keyframes ctaPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+    @keyframes shine {
+      0% { left: -60%; }
+      60%, 100% { left: 130%; }
+    }
+
+    .trust {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 8px 16px; font-size: 12px; color: var(--muted);
+    }
+    .trust span { display: flex; align-items: center; gap: 4px; }
+    .trust svg { width: 14px; height: 14px; color: var(--brand); flex-shrink: 0; }
+
+    @media (min-width: 640px) {
+      .band h1 { font-size: 36px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .cta.ready, .cta.ready::after, .step.active { animation: none; }
+    }
+  </style>
+  <link rel="preload" as="image" href="images/quiz1.png" fetchpriority="high">
+  <link rel="prefetch" as="image" href="images/quiz2.png">
+  <link rel="prefetch" as="image" href="images/quiz3.png">
+  <link rel="prefetch" as="image" href="images/quiz4.png">
+  <link rel="prefetch" as="image" href="images/quiz5.png">
+  <link rel="prefetch" as="image" href="images/reward.png">
+</head>
+<body>
+  <header class="topbar">
+    <img src="images/logo.png" alt="Shopee">
+    <span class="verified">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.4 1.8 3-.2.9 2.9 2.5 1.7-1 2.8 1 2.8-2.5 1.7-.9 2.9-3-.2L12 22l-2.4-1.8-3 .2-.9-2.9-2.5-1.7 1-2.8-1-2.8 2.5-1.7.9-2.9 3 .2L12 2zm-1.2 13.6l5.6-5.6-1.4-1.4-4.2 4.2-2.2-2.2-1.4 1.4 3.6 3.6z"></path></svg>
+      Promoção oficial
+    </span>
+  </header>
+
+  <section class="band">
+    <span class="eyebrow"><span class="dot"></span>Aniversário 5 anos</span>
+    <h1 id="band-title">Responda e <span>ganhe giros</span> na roleta</h1>
+    <p id="band-sub">São só 5 perguntas rápidas. Ao final, você libera seu acesso à Roleta Premiada.</p>
+  </section>
+
+  <main>
+    <div class="card">
+      <div class="progress" id="progress" aria-live="polite">
+        <div class="progress-head">
+          <span id="progress-label">Pergunta 1 de 5</span>
+          <b id="progress-pct">20%</b>
+        </div>
+        <div class="progress-pills" aria-hidden="true"><i class="done"></i><i></i><i></i><i></i><i></i></div>
+      </div>
+
+      <section class="step active" data-step="1">
+        <img class="step-img" src="images/quiz1.png" alt="Roleta Premiada de 5 anos da Shopee" width="800" height="533" fetchpriority="high" decoding="async">
+        <h2 class="question">Você já ouviu falar da <b>Roleta Premiada de 5 anos</b> da Shopee?</h2>
+        <ul class="options" role="radiogroup" aria-label="Opções">
+          <li><button type="button" class="option" role="radio" aria-checked="false"><span class="letter">A</span><span class="label">Sim! Estou animado(a) pra girar!</span><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></span></button></li>
+          <li><button type="button" class="option" role="radio" aria-checked="false"><span class="letter">B</span><span class="label">Ouvi, mas ainda não participei</span><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></span></button></li>
+          <li><button type="button" class="option" role="radio" aria-checked="false"><span class="letter">C</span><span class="label">Não, é a primeira vez que vejo</span><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></span></button></li>
+          <li><button type="button" class="option" role="radio" aria-checked="false"><span class="letter">D</span><span class="label">Quero saber mais!</span><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></span></button></li>
+        </ul>
+      </section>
+
+      <section class="step" data-step="2">
+        <img class="step-img" src="images/quiz2.png" alt="Promoção de 5 anos da Shopee" width="800" height="1000" decoding="async">
+        <h2 class="question">O que mais te chama atenção na promoção de <b>5 anos</b> da Shopee?</h2>
+        <ul class="options" role="radiogroup" aria-label="Opções">
+          <li><button type="button" class="option" role="radio" aria-checked="false"><span class="letter">A</span><span class="label">Os descontos de até 90%</span><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></span></button></li>
+          <li><button type="button" class="option" role="radio" aria-checked="false"><span class="letter">B</span><span class="label">Frete grátis e cupons</span><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></span></button></li>
+          <li><button type="button" class="option" role="radio" aria-checked="false"><span class="letter">C</span><span class="label">As ofertas relâmpago</span><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></span></button></li>
+          <li><button type="button" class="option" role="radio" aria-checked="false"><span class="letter">D</span><span class="label">As marcas oficiais em promoção</span><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></span></button></li>
+        </ul>
+      </section>
+
+      <section class="step" data-step="3">
+        <img class="step-img" src="images/quiz3.png" alt="Ofertas de aniversário Shopee" width="800" height="1041" decoding="async">
+        <h2 class="question">Você já aproveitou alguma promoção de <b>5 anos</b> da Shopee?</h2>
+        <ul class="options" role="radiogroup" aria-label="Opções">
+          <li><button type="button" class="option" role="radio" aria-checked="false"><span class="letter">A</span><span class="label">Sim e quero mais!</span><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></span></button></li>
+          <li><button type="button" class="option" role="radio" aria-checked="false"><span class="letter">B</span><span class="label">Sim, vou adquirir produtos novos!</span><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></span></button></li>
+          <li><button type="button" class="option" role="radio" aria-checked="false"><span class="letter">C</span><span class="label">Ainda não, mas quero participar</span><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></span></button></li>
+          <li><button type="button" class="option" role="radio" aria-checked="false"><span class="letter">D</span><span class="label">Não costumo aproveitar</span><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></span></button></li>
+        </ul>
+      </section>
+
+      <section class="step" data-step="4">
+        <img class="step-img" src="images/quiz4.png" alt="Produtos em promoção" width="800" height="800" decoding="async">
+        <h2 class="question">Qual tipo de produto você mais quer encontrar em promoção?</h2>
+        <ul class="options" role="radiogroup" aria-label="Opções">
+          <li><button type="button" class="option" role="radio" aria-checked="false"><span class="letter">A</span><span class="label">Eletrônicos e gadgets</span><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></span></button></li>
+          <li><button type="button" class="option" role="radio" aria-checked="false"><span class="letter">B</span><span class="label">Moda e beleza</span><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></span></button></li>
+          <li><button type="button" class="option" role="radio" aria-checked="false"><span class="letter">C</span><span class="label">Casa e decoração</span><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></span></button></li>
+          <li><button type="button" class="option" role="radio" aria-checked="false"><span class="letter">D</span><span class="label">Brinquedos e presentes</span><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></span></button></li>
+        </ul>
+      </section>
+
+      <section class="step" data-step="5">
+        <img class="step-img" src="images/quiz5.png" alt="Roleta Premiada nas redes sociais" width="686" height="386" decoding="async">
+        <h2 class="question">Como você ficou sabendo da <b>Roleta Premiada de 5 anos</b>?</h2>
+        <ul class="options" role="radiogroup" aria-label="Opções">
+          <li><button type="button" class="option" role="radio" aria-checked="false"><span class="letter">A</span><span class="label">Pelo Instagram</span><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></span></button></li>
+          <li><button type="button" class="option" role="radio" aria-checked="false"><span class="letter">B</span><span class="label">Pelo TikTok</span><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></span></button></li>
+          <li><button type="button" class="option" role="radio" aria-checked="false"><span class="letter">C</span><span class="label">Pelo Facebook</span><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></span></button></li>
+          <li><button type="button" class="option" role="radio" aria-checked="false"><span class="letter">D</span><span class="label">Recebi o link por WhatsApp</span><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></span></button></li>
+        </ul>
+      </section>
+
+      <section class="step reward" data-step="6">
+        <img class="step-img" src="images/reward.png" alt="Você ganhou 2 giros na roleta Shopee" width="1700" height="925" decoding="async">
+        <p>Como agradecimento, você liberou <strong>acesso grátis à promoção de 5 anos da Shopee</strong> com as linhas mais premium. Gire a roleta e descubra seu desconto.</p>
+      </section>
+
+      <button id="next-button" class="cta" type="button" disabled="">Escolha uma opção</button>
+
+      <div class="trust">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg>Participação grátis</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg>Leva menos de 1 minuto</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg>Site seguro</span>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const TOTAL_QUESTIONS = 5;
+    const REDIRECT_URL = '../roleta/index.html';
+
+    const steps = document.querySelectorAll('.step');
+    const nextButton = document.getElementById('next-button');
+    const progress = document.getElementById('progress');
+    const progressLabel = document.getElementById('progress-label');
+    const progressPct = document.getElementById('progress-pct');
+    const pills = document.querySelectorAll('.progress-pills i');
+    const bandTitle = document.getElementById('band-title');
+    const bandSub = document.getElementById('band-sub');
+
+    let current = 1;
+
+    const setReady = (ready, label) => {
+      nextButton.disabled = !ready;
+      nextButton.classList.toggle('ready', ready);
+      nextButton.textContent = label;
+    };
+
+    const render = () => {
+      steps.forEach((step) => step.classList.toggle('active', Number(step.dataset.step) === current));
+
+      if (current <= TOTAL_QUESTIONS) {
+        progressLabel.textContent = 'Pergunta ' + current + ' de ' + TOTAL_QUESTIONS;
+        progressPct.textContent = Math.round((current / TOTAL_QUESTIONS) * 100) + '%';
+        pills.forEach((pill, i) => pill.classList.toggle('done', i < current));
+        setReady(false, 'Escolha uma opção');
+      } else {
+        progress.style.display = 'none';
+        bandTitle.innerHTML = 'Acesso <span>liberado</span>!';
+        bandSub.textContent = 'Você respondeu todas as perguntas. Seus giros já estão esperando.';
+        setReady(true, 'Girar a roleta agora');
+      }
+    };
+
+    document.querySelectorAll('.options').forEach((group) => {
+      group.addEventListener('click', (event) => {
+        const option = event.target.closest('.option');
+        if (!option) return;
+        group.querySelectorAll('.option').forEach((btn) => btn.setAttribute('aria-checked', String(btn === option)));
+        setReady(true, current === TOTAL_QUESTIONS ? 'Ver meu prêmio' : 'Próxima pergunta');
+      });
+    });
+
+    nextButton.addEventListener('click', () => {
+      if (current > TOTAL_QUESTIONS) {
+        window.location.href = REDIRECT_URL + window.location.search;
+        return;
+      }
+      current++;
+      render();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    render();
+  </script>
+<script src="js/track.js" defer=""></script>
+
+
+</body></html>

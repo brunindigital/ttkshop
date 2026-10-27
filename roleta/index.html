@@ -1,0 +1,566 @@
+<!DOCTYPE html><html lang="pt-br"><head>
+  
+  <meta charset="utf-8">
+
+  <script src="js/clean-legacy-utm.js"></script>
+  <script src="js/latest.js" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#EE4D2D">
+  <title>Shopee - Gire a Roleta!</title>
+  <link rel="icon" href="images/logo.png">
+
+  <style>
+    @font-face {
+      font-family: 'Inter';
+      src: url('fonts/InterVariable.ttf') format('truetype');
+      font-weight: 100 900;
+      font-display: swap;
+    }
+
+    :root {
+      --brand: #EE4D2D;
+      --brand-dark: #D0381B;
+      --ink: #1F1F1F;
+      --muted: #6B6B6B;
+      --surface: #FFFFFF;
+      --canvas: #F6F6F7;
+      --gold: #FFB800;
+      --line: #EAEAEC;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      background: var(--canvas);
+      color: var(--ink);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100%;
+    }
+
+    body { overflow-x: hidden; }
+
+    /* Header */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar img { height: 28px; width: auto; display: block; }
+    .verified {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .verified svg { width: 16px; height: 16px; color: var(--brand); }
+
+    /* Hero band */
+    .band {
+      background: var(--brand);
+      color: var(--surface);
+      padding: 20px 20px 84px;
+      text-align: center;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .eyebrow .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 3px rgba(255, 184, 0, 0.3);
+    }
+    .band h1 {
+      margin-top: 14px;
+      font-size: 25px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+    }
+    .band h1 span { color: var(--gold); }
+    .band p {
+      margin: 10px auto 0;
+      max-width: 320px;
+      font-size: 15px;
+      line-height: 1.5;
+      opacity: 0.9;
+      text-wrap: pretty;
+    }
+
+    /* Main card */
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 16px 32px;
+    }
+    .card {
+      width: 100%;
+      max-width: 440px;
+      margin-top: -72px;
+      background: var(--surface);
+      border-radius: 24px;
+      box-shadow: 0 20px 40px -20px rgba(31, 31, 31, 0.25), 0 1px 0 var(--line);
+      padding: 20px 16px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .chances {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: var(--canvas);
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .chances-pills { display: flex; gap: 6px; }
+    .chances-pills i {
+      width: 22px; height: 8px; border-radius: 999px;
+      background: var(--brand);
+      transition: background 0.3s ease;
+    }
+    .chances-pills i.used { background: var(--line); }
+
+    /* Wheel */
+    .wheel-stage {
+      position: relative;
+      width: min(100%, 290px);
+      aspect-ratio: 1 / 1;
+    }
+    #roleta2 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      transform: translate(-50%, -50%);
+    }
+    #roleta2 img { display: block; width: 100%; height: auto; }
+    #roleta3 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 28%;
+      padding-left: 3%;
+      transform: translate(-50%, -50%);
+      z-index: 5;
+      cursor: pointer;
+      filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.25));
+    }
+
+    .spinner { animation: idleSwing 1.5s ease-in-out infinite; }
+
+    @keyframes idleSwing {
+      0%, 100% { transform: rotate(-123deg); }
+      50% { transform: rotate(-117deg); }
+    }
+    @keyframes spinToRetryThenWin {
+      0% { transform: translate(-50%, -50%) rotate(-120deg); }
+      100% { transform: translate(-50%, -50%) rotate(1632.86deg); }
+    }
+    @keyframes spinToOne {
+      0% { transform: translate(-50%, -50%) rotate(192.86deg); }
+      100% { transform: translate(-50%, -50%) rotate(2507.14deg); }
+    }
+    .wheel__spinner_animated_retry_then_win {
+      animation: 10s spinToRetryThenWin cubic-bezier(0.1, 0.1, 0.1, 1) 1 forwards;
+    }
+    .wheel__spinner_animated {
+      animation: 10s spinToOne cubic-bezier(0.1, 0.1, 0.1, 1) 1 forwards;
+    }
+
+    /* CTA */
+    .cta {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: 60px;
+      border: 0;
+      border-radius: 16px;
+      background: var(--brand);
+      color: var(--surface);
+      font: inherit;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 10px 24px -8px rgba(238, 77, 45, 0.7);
+      animation: ctaPulse 1.8s ease-in-out infinite;
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+    .cta:hover { background: var(--brand-dark); }
+    .cta:active { transform: scale(0.98); }
+    .cta:disabled {
+      animation: none;
+      background: var(--line);
+      color: var(--muted);
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+    .cta::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -60%;
+      width: 40%; height: 100%;
+      background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+      animation: shine 2.6s ease-in-out infinite;
+    }
+    .cta:disabled::after { display: none; }
+
+    @keyframes ctaPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.035); }
+    }
+    @keyframes shine {
+      0% { left: -60%; }
+      60%, 100% { left: 130%; }
+    }
+
+    .trust {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 16px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .trust span { display: flex; align-items: center; gap: 4px; }
+    .trust svg { width: 14px; height: 14px; color: var(--brand); flex-shrink: 0; }
+
+    /* Social proof toast */
+    .people {
+      position: fixed;
+      left: 50%;
+      top: 64px;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: calc(100% - 32px);
+      max-width: 400px;
+      padding: 10px 14px 10px 10px;
+      border-radius: 16px;
+      background: var(--surface);
+      color: var(--ink);
+      border: 1px solid var(--line);
+      box-shadow: 0 16px 32px -12px rgba(31, 31, 31, 0.3);
+      transform: translate(-50%, -20px);
+      opacity: 0;
+    }
+    .people.slide-animation { animation: toast 4s ease-in-out forwards; }
+    .people.display-off { display: none; }
+    .people img {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .people-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+    .people-body p { font-size: 13px; line-height: 1.4; }
+    .people-body p b { color: var(--brand); font-weight: 700; }
+    .people-meta {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 11px; color: var(--muted);
+    }
+    .people-meta .live {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #22A35A;
+    }
+
+    @keyframes toast {
+      0% { transform: translate(-50%, -20px); opacity: 0; }
+      12%, 82% { transform: translate(-50%, 0); opacity: 1; }
+      100% { transform: translate(-50%, -20px); opacity: 0; }
+    }
+
+    /* Modals */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      background: rgba(20, 20, 20, 0.6);
+      backdrop-filter: blur(4px);
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      z-index: 50;
+      width: calc(100% - 40px);
+      max-width: 360px;
+      transform: translate(-50%, -50%);
+      background: var(--surface);
+      border-radius: 24px;
+      padding: 28px 22px 22px;
+      text-align: center;
+      animation: popIn 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+    }
+    .popup-content { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .popup-icon {
+      display: flex; align-items: center; justify-content: center;
+      width: 64px; height: 64px; border-radius: 50%;
+      background: rgba(238, 77, 45, 0.1);
+      color: var(--brand);
+    }
+    .popup-icon svg { width: 30px; height: 30px; }
+    .popup h2 { font-size: 22px; font-weight: 800; letter-spacing: -0.01em; }
+    .popup p { font-size: 15px; line-height: 1.5; color: var(--muted); text-wrap: pretty; }
+    .popup p strong { color: var(--ink); }
+    .highlight {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 8px;
+      background: var(--brand);
+      color: var(--surface);
+      font-weight: 800;
+      animation: ctaPulse 1.5s ease-in-out infinite;
+    }
+    .discount {
+      font-size: 56px;
+      line-height: 1;
+      font-weight: 900;
+      color: var(--brand);
+      letter-spacing: -0.03em;
+    }
+    .popup .cta { margin-top: 6px; height: 54px; font-size: 16px; }
+
+    @keyframes popIn {
+      from { transform: translate(-50%, -45%) scale(0.92); opacity: 0; }
+      to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    }
+
+    @media (min-width: 640px) {
+      .band h1 { font-size: 36px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cta, .cta::after, .highlight, .spinner { animation: none; }
+    }
+  </style>
+
+  <script src="js/confetti.browser.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <img src="images/logo.png" alt="Shopee">
+    <span class="verified">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.4 1.8 3-.2.9 2.9 2.5 1.7-1 2.8 1 2.8-2.5 1.7-.9 2.9-3-.2L12 22l-2.4-1.8-3 .2-.9-2.9-2.5-1.7 1-2.8-1-2.8 2.5-1.7.9-2.9 3 .2L12 2zm-1.2 13.6l5.6-5.6-1.4-1.4-4.2 4.2-2.2-2.2-1.4 1.4 3.6 3.6z"></path></svg>
+      Promoção oficial
+    </span>
+  </header>
+
+  <section class="band">
+    <span class="eyebrow"><span class="dot"></span>Aniversário 5 anos</span>
+    <h1 id="cta-text">Gire a roleta e ganhe seu <span>Mega Desconto</span></h1>
+    <p>Você foi selecionado para participar. Toque em girar e descubra seu prêmio.</p>
+  </section>
+
+  <main>
+    <div class="card">
+      <div class="chances" aria-live="polite">
+        <span id="chances-label">2 giros disponíveis</span>
+        <span class="chances-pills" aria-hidden="true"><i></i><i></i></span>
+      </div>
+
+      <div class="wheel-stage">
+        <div id="roleta2">
+          <img src="images/roleta.png" class="spinner" alt="Roleta de descontos">
+        </div>
+        <img src="images/button-gire.png" id="roleta3" alt="Girar a roleta" role="button">
+      </div>
+
+      <button id="button-cta" class="cta runSpin" type="button">Girar para ganhar</button>
+
+      <div class="trust">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg>Participação grátis</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg>Resultado na hora</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg>Site seguro</span>
+      </div>
+    </div>
+  </main>
+
+  <div id="people" class="people" aria-live="polite">
+    <img src="images/man6.jpg" id="people-img" alt="">
+    <div class="people-body">
+      <p id="people-p">João acabou de ganhar <b>75% de desconto</b>!</p>
+      <span class="people-meta"><span class="live"></span>agora mesmo</span>
+    </div>
+  </div>
+
+  <div id="overlay" class="overlay"></div>
+
+  <div id="popup-try-again" class="popup" role="dialog" aria-modal="true" aria-labelledby="try-title">
+    <div class="popup-content">
+      <div class="popup-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"></path><path d="M3 4v5h5"></path></svg>
+      </div>
+      <h2 id="try-title">Quase lá!</h2>
+      <p>Você foi selecionado e ganhou <span class="highlight">+1</span> chance extra. Boa sorte!</p>
+      <button id="try-again-button" class="cta" type="button">Girar novamente</button>
+    </div>
+  </div>
+
+  <div id="popup" class="popup" role="dialog" aria-modal="true" aria-labelledby="win-title">
+    <div class="popup-content">
+      <div class="popup-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"></rect><path d="M12 8v13"></path><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path><path d="M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"></path></svg>
+      </div>
+      <h2 id="win-title">Parabéns!</h2>
+      <span class="discount">95% OFF</span>
+      <p>Você acaba de ganhar o <strong>Mega Desconto de 95%</strong>. Resgate agora antes que expire.</p>
+      <button id="resgatar-premio" class="cta" type="button">Resgatar meu prêmio</button>
+    </div>
+    <audio id="confetti-audio" src="media/ml.mp3"></audio>
+    <audio id="roleta-audio" src="media/roleta.mp3"></audio>
+  </div>
+
+  <script>
+    const REDIRECT_URL = '../loja/index.html';
+
+    let attempt = 0;
+    let spinning = false;
+
+    const roleta2 = document.getElementById('roleta2');
+    const roleta2Img = roleta2.querySelector('img');
+    const buttonCta = document.getElementById('button-cta');
+    const confettiAudio = document.getElementById('confetti-audio');
+    const roletaAudio = document.getElementById('roleta-audio');
+    const overlay = document.getElementById('overlay');
+    const tryAgainPopup = document.getElementById('popup-try-again');
+    const winPopup = document.getElementById('popup');
+    const chancesLabel = document.getElementById('chances-label');
+    const chancePills = document.querySelectorAll('.chances-pills i');
+
+    const updateChances = () => {
+      const left = Math.max(0, 2 - attempt);
+      chancesLabel.textContent = left === 1 ? '1 giro disponível' : left + ' giros disponíveis';
+      chancePills.forEach((pill, i) => pill.classList.toggle('used', i < attempt));
+    };
+
+    const animateSpin = () => {
+      if (spinning || attempt > 1) return;
+      spinning = true;
+
+      roleta2Img.classList.remove('spinner');
+      buttonCta.disabled = true;
+      buttonCta.textContent = 'Girando...';
+
+      roletaAudio.currentTime = 0;
+      roletaAudio.play().catch(() => {});
+
+      const isFirst = attempt === 0;
+      roleta2.classList.add(isFirst ? 'wheel__spinner_animated_retry_then_win' : 'wheel__spinner_animated');
+      attempt++;
+      updateChances();
+
+      setTimeout(() => {
+        roletaAudio.pause();
+        spinning = false;
+        overlay.style.display = 'block';
+
+        if (isFirst) {
+          tryAgainPopup.style.display = 'block';
+        } else {
+          confetti({ particleCount: 120, spread: 75, origin: { y: 0.6 }, colors: ['#EE4D2D', '#FFB800', '#FFFFFF'] });
+          confettiAudio.play().catch(() => {});
+          winPopup.style.display = 'block';
+          buttonCta.textContent = 'Prêmio garantido';
+        }
+      }, 10000);
+    };
+
+    document.querySelectorAll('.runSpin').forEach((el) => el.addEventListener('click', animateSpin));
+    document.getElementById('roleta3').addEventListener('click', animateSpin);
+
+    document.getElementById('try-again-button').addEventListener('click', () => {
+      overlay.style.display = 'none';
+      tryAgainPopup.style.display = 'none';
+      roleta2.classList.remove('wheel__spinner_animated_retry_then_win');
+      roleta2.style.transform = 'translate(-50%, -50%) rotate(192.86deg)';
+      buttonCta.disabled = false;
+      buttonCta.textContent = 'Girar novamente';
+    });
+
+    document.getElementById('resgatar-premio').addEventListener('click', () => {
+      const query = window.location.search;
+      window.location.href = REDIRECT_URL + query;
+    });
+
+    (() => {
+      const descontos = [5, 25, 50, 75, 95];
+      const pessoas = [
+        ['Pedro Oliveira', 'https://i.postimg.cc/RhB8zCK5/24.jpg'],
+        ['Ana Alves', 'https://i.postimg.cc/prw31XTF/2.jpg'],
+        ['Fernanda Santos', 'https://i.postimg.cc/X7FvNr9t/3.jpg'],
+        ['Bruno Souza', 'https://i.postimg.cc/2ynfYBgw/5.jpg'],
+        ['Fabrício Costa', 'https://i.postimg.cc/kXrTRHtD/6.jpg'],
+        ['Juliana Lima', 'https://i.postimg.cc/0ynPrDjX/4.jpg'],
+        ['Yasmin Araújo', 'https://i.postimg.cc/9XNrx3BF/10.jpg'],
+        ['Lucilene Silva', 'https://i.postimg.cc/x8Wj92sv/11.jpg'],
+        ['Everaldo Rocha', 'https://i.postimg.cc/nhFYvfVV/7.jpg'],
+        ['Oswaldo Carvalho', 'https://i.postimg.cc/cHSQ4pzN/9.jpg'],
+        ['João Pereira', 'https://i.postimg.cc/W3wf26XX/14.jpg'],
+        ['Ariadiny Gomes', 'https://i.postimg.cc/xTMNqxKf/12.jpg'],
+        ['Carla Ferreira', 'https://i.postimg.cc/qq8BBFWW/13.jpg'],
+        ['Gabriela Vieira', 'https://i.postimg.cc/MT9bPss2/15.jpg'],
+        ['Wellington Martins', 'https://i.postimg.cc/vmBW17Y0/16.jpg'],
+        ['Iago Barbosa', 'https://i.postimg.cc/rwgHX9Zj/17.jpg'],
+        ['Maicon Ramos', 'https://i.postimg.cc/0NFcPXYY/18.jpg'],
+        ['Vitória Castro', 'https://i.postimg.cc/VkSKpcMf/19.jpg'],
+        ['Matheus Santos', 'https://i.postimg.cc/qvXNkN2j/20.jpg'],
+        ['Marta Rocha', 'https://i.postimg.cc/N0Fdh9nr/23.jpg'],
+        ['Geraldo Nascimento', 'https://i.postimg.cc/25gVzM07/21.jpg'],
+        ['Daniel Ribeiro', 'https://i.postimg.cc/ZK0tcnb0/22.jpg'],
+      ];
+
+      const box = document.getElementById('people');
+      const text = document.getElementById('people-p');
+      const img = document.getElementById('people-img');
+
+      const show = () => {
+        const [nome, foto] = pessoas[Math.floor(Math.random() * pessoas.length)];
+        const desconto = descontos[Math.floor(Math.random() * descontos.length)];
+        text.innerHTML = nome + ' acabou de ganhar <b>' + desconto + '% de desconto</b>';
+        img.src = foto;
+        box.classList.remove('slide-animation');
+        void box.offsetWidth;
+        box.classList.add('slide-animation');
+      };
+
+        setTimeout(show, 5000);
+        setInterval(show, 15000);
+    })();
+  </script>
+
+  <script src="js/jstools.js"></script>
+<script src="js/track.js" defer=""></script>
+
+
+</body></html>

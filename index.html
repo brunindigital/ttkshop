@@ -1,0 +1,386 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+  <meta charset="utf-8">
+
+  <script src="js/clean-legacy-utm.js"></script>
+  <script src="js/latest.js" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#EE4D2D">
+  <title>Verificação de segurança</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brand: #EE4D2D;
+      --brand-dark: #D73F21;
+      --brand-soft: #FDECE8;
+      --fg: #1F1F1F;
+      --muted-fg: #6B6B6B;
+      --line: #EDEDED;
+      --surface: #F5F5F5;
+      --card: #FFFFFF;
+      --ok: #1F9D55;
+    }
+
+    html, body { background: var(--surface); }
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--fg);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .topbar {
+      background: var(--card);
+      border-bottom: 1px solid var(--line);
+      height: 52px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted-fg);
+    }
+    .topbar svg { width: 16px; height: 16px; color: var(--ok); }
+
+    .hero {
+      background: var(--brand);
+      padding: 32px 20px 88px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      text-align: center;
+      color: #FFFFFF;
+    }
+    .shield {
+      width: 64px; height: 64px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.16);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .shield::after {
+      content: "";
+      position: absolute; inset: -6px;
+      border-radius: 24px;
+      border: 2px solid rgba(255,255,255,0.35);
+      animation: ring 1.8s ease-out infinite;
+    }
+    .shield svg { width: 32px; height: 32px; }
+    .hero h1 { font-size: 24px; font-weight: 800; line-height: 1.2; text-wrap: balance; }
+    .hero p { font-size: 15px; line-height: 1.5; opacity: 0.92; max-width: 320px; text-wrap: pretty; }
+
+    main {
+      max-width: 400px;
+      margin: -64px auto 0;
+      padding: 0 16px 32px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 20px;
+      box-shadow: 0 12px 32px -12px rgba(0,0,0,0.18);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      animation: rise 0.45s ease both;
+    }
+
+    .progress-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    #pct { color: var(--brand); font-variant-numeric: tabular-nums; }
+    .track {
+      margin-top: 10px;
+      height: 8px;
+      border-radius: 9999px;
+      background: var(--line);
+      overflow: hidden;
+    }
+    #fill {
+      height: 100%;
+      width: 0%;
+      background: var(--brand);
+      border-radius: 9999px;
+    }
+
+    .steps { display: flex; flex-direction: column; gap: 8px; list-style: none; }
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1.5px solid var(--line);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--muted-fg);
+      transition: border-color 0.3s, background 0.3s, color 0.3s;
+    }
+    .step.active { border-color: var(--brand); background: var(--brand-soft); color: var(--fg); }
+    .step.done { color: var(--fg); }
+    .ind {
+      width: 28px; height: 28px;
+      flex-shrink: 0;
+      border-radius: 8px;
+      background: var(--surface);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step.active .ind { background: #FFFFFF; }
+    .step.done .ind { background: var(--ok); }
+    .ind .dot { width: 6px; height: 6px; border-radius: 50%; background: #C8C8C8; }
+    .ind .spin {
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      border: 2.5px solid var(--brand);
+      border-top-color: transparent;
+      animation: spin 0.7s linear infinite;
+    }
+    .ind svg { width: 16px; height: 16px; color: #FFFFFF; animation: pop 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+    .step .state { margin-left: auto; font-size: 12px; font-weight: 700; color: var(--ok); opacity: 0; transition: opacity 0.3s; }
+    .step.done .state { opacity: 1; }
+
+    #result { display: none; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+    #result.show { display: flex; animation: rise 0.4s ease both; }
+    .result-icon {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: var(--ok);
+      display: flex; align-items: center; justify-content: center;
+      color: #FFFFFF;
+      animation: pop 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .result-icon svg { width: 28px; height: 28px; }
+    #result h2 { font-size: 20px; font-weight: 800; }
+    #result p { font-size: 14px; line-height: 1.5; color: var(--muted-fg); }
+
+    #cta {
+      width: 100%;
+      border: none;
+      border-radius: 14px;
+      padding: 17px 20px;
+      font: inherit;
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--line);
+      color: var(--muted-fg);
+      cursor: not-allowed;
+      transition: background 0.25s, transform 0.1s, box-shadow 0.25s;
+    }
+    #cta.enabled {
+      background: var(--brand);
+      color: #FFFFFF;
+      cursor: pointer;
+      box-shadow: 0 10px 24px -8px rgba(238,77,45,0.6);
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+    #cta.enabled:hover { background: var(--brand-dark); }
+    #cta.enabled:active { transform: scale(0.98); }
+    #cta svg { width: 18px; height: 18px; }
+    .btn-spin {
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.45);
+      border-top-color: #FFFFFF;
+      animation: spin 0.7s linear infinite;
+    }
+
+    #auto { font-size: 13px; color: var(--muted-fg); text-align: center; min-height: 18px; margin-top: -8px; }
+
+    .trust {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted-fg);
+    }
+    .trust span { display: flex; align-items: center; gap: 6px; }
+    .trust svg { width: 14px; height: 14px; color: var(--ok); }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes pop { from { transform: scale(0.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes ring { from { transform: scale(0.9); opacity: 1; } to { transform: scale(1.25); opacity: 0; } }
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.025); } }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+    Conexão protegida
+  </header>
+
+  <section class="hero">
+    <div class="shield" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6l8-3z"></path><path d="M9 12l2 2 4-4"></path></svg>
+    </div>
+    <h1 id="title">Verificando sua conexão</h1>
+    <p id="subtitle">Isso leva só alguns segundos. Não feche esta página.</p>
+  </section>
+
+  <main>
+    <div class="card">
+      <div id="progress">
+        <div class="progress-head">
+          <span id="progress-label">Verificação em andamento</span>
+          <span id="pct">0%</span>
+        </div>
+        <div class="track" role="progressbar" aria-label="Progresso da verificação" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="track">
+          <div id="fill"></div>
+        </div>
+      </div>
+
+      <ol class="steps" id="steps" aria-live="polite"></ol>
+
+      <div id="result" role="status">
+        <div class="result-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+        </div>
+        <h2>Tudo certo!</h2>
+        <p>Sua conexão foi verificada com sucesso.</p>
+      </div>
+
+      <button id="cta" type="button" disabled="">
+        <span class="btn-spin" style="border-color: rgba(107,107,107,0.3); border-top-color: transparent;"></span>
+        Verificando…
+      </button>
+      <p id="auto" aria-live="polite"></p>
+
+      <div class="trust">
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6l8-3z"></path></svg>
+          Ambiente seguro
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+          Dados criptografados
+        </span>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const STEPS = [
+      { label: "Conexão segura", duration: 900 },
+      { label: "Verificando dispositivo", duration: 1000 },
+      { label: "Confirmando acesso", duration: 900 },
+    ];
+    const AUTO_CONTINUE_SECONDS = 4;
+    const CTA_LINK = "quiz/index.html" + window.location.search;
+
+    const CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+    const ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+
+    const list = document.getElementById("steps");
+    STEPS.forEach((s, i) => {
+      const li = document.createElement("li");
+      li.className = "step";
+      li.id = "step-" + i;
+      li.innerHTML = '<span class="ind" id="ind-' + i + '"><span class="dot"></span></span>' +
+        '<span>' + s.label + '</span><span class="state">OK</span>';
+      list.appendChild(li);
+    });
+
+    const fill = document.getElementById("fill");
+    const pct = document.getElementById("pct");
+    const track = document.getElementById("track");
+    const total = STEPS.reduce((a, s) => a + s.duration, 0);
+    const startedAt = performance.now();
+
+    function tick(now) {
+      const t = Math.min((now - startedAt) / total, 1);
+      const eased = 1 - Math.pow(1 - t, 2);
+      const v = Math.round(eased * 100);
+      fill.style.width = v + "%";
+      pct.textContent = v + "%";
+      track.setAttribute("aria-valuenow", String(v));
+      if (t < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+
+    function runStep(i) {
+      if (i >= STEPS.length) return finish();
+      const el = document.getElementById("step-" + i);
+      const ind = document.getElementById("ind-" + i);
+      el.classList.add("active");
+      ind.innerHTML = '<span class="spin"></span>';
+      setTimeout(() => {
+        el.classList.remove("active");
+        el.classList.add("done");
+        ind.innerHTML = CHECK;
+        runStep(i + 1);
+      }, STEPS[i].duration);
+    }
+
+    let clicked = false;
+    let countdown;
+
+    function finish() {
+      document.getElementById("title").textContent = "Conexão verificada";
+      document.getElementById("subtitle").textContent = "Tudo pronto. Toque no botão abaixo para continuar.";
+      document.getElementById("progress").style.display = "none";
+      list.style.display = "none";
+      document.getElementById("result").classList.add("show");
+
+      const btn = document.getElementById("cta");
+      btn.disabled = false;
+      btn.classList.add("enabled");
+      btn.innerHTML = "Continuar " + ARROW;
+      btn.focus({ preventScroll: true });
+
+      let left = AUTO_CONTINUE_SECONDS;
+      const auto = document.getElementById("auto");
+      auto.textContent = "Continuando automaticamente em " + left + "s";
+      countdown = setInterval(() => {
+        left -= 1;
+        if (left <= 0) { go(); return; }
+        auto.textContent = "Continuando automaticamente em " + left + "s";
+      }, 1000);
+    }
+
+    function go() {
+      if (clicked) return;
+      clicked = true;
+      clearInterval(countdown);
+      document.getElementById("auto").textContent = "";
+      const btn = document.getElementById("cta");
+      btn.disabled = true;
+      btn.classList.remove("enabled");
+      btn.style.background = "var(--brand)";
+      btn.style.color = "#FFFFFF";
+      btn.innerHTML = '<span class="btn-spin"></span> Carregando…';
+      window.location.href = CTA_LINK;
+    }
+
+    document.getElementById("cta").addEventListener("click", function () {
+      if (this.classList.contains("enabled")) go();
+    });
+
+    runStep(0);
+  </script>
+<script src="js/track.js" defer=""></script>
+
+
+</body></html>
